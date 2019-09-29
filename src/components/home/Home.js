@@ -1,9 +1,11 @@
 import React from 'react';
+import Loader from 'react-loader-spinner';
 
 function Home() {
+
   return (
-    <div className='row'>
-      <h2>Home page</h2>
+    <div>
+      <h1>Home</h1>
     </div>
   )
 }

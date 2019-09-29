@@ -1,30 +1,59 @@
-import {authActions} from "../actions/Actions";
 import axios from "../../helpers/AxiosHelper";
+import {handleErrorMessages, handleSuccessMessages} from "../../helpers/AxiosCallbacks";
+import {showSpinner, hideSpinner} from "./SpinnerAC";
 
-const onLoginSuccess = (responseData) => {
+import {authActions} from "../actions/Actions";
+
+const onLoginSuccess = (token) => {
   return {
     type: authActions.LOGIN_SUCCESS,
-    token: responseData.token
+    token: token
   }
 }
 
 const onLoginFailure = (err) => {
   return {
-    type: authActions.LOGIN_FAILED,
-    failedMessage: err.response.data.message
+    type: authActions.LOGIN_FAILED
   }
 }
 
 export const login = (user) => {
 
   return dispatch => {
+    showSpinner(dispatch);
     axios.post('/auth', user)
       .then(response => {
-        dispatch(onLoginSuccess(response.data))
+        hideSpinner(dispatch);
+        dispatch(onLoginSuccess(response.data.token))
       })
       .catch((err) => {
-        alert(err.response.data.responseMessage);
+        hideSpinner(dispatch);
+        handleErrorMessages(err);
+
         dispatch(onLoginFailure(err))
+      });
+  }
+}
+
+
+const onRegistration = () => {
+  return {
+    type: authActions.REGISTRATION
+  }
+}
+
+export const registerUser = (user) => {
+  return dispatch => {
+    showSpinner(dispatch)
+    axios.post('/user', user)
+      .then(response => {
+        hideSpinner(dispatch);
+        handleSuccessMessages(response);
+        dispatch(onRegistration(response))
+      })
+      .catch((err) => {
+        hideSpinner(dispatch)
+        handleErrorMessages(err)
       });
   }
 }

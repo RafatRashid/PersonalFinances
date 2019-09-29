@@ -12,7 +12,10 @@ const reducer = (state = initialState, action) => {
       return authenticateUser(state, action.token)
 
     case authActions.LOGIN_FAILED:
-      return informLoginFailure(state, action.failedMessage)
+      return informLoginFailure(state)
+
+    case authActions.REGISTRATION:
+      return onRegistration(state)
 
     default:
       return state
@@ -28,12 +31,20 @@ let authenticateUser = (state, token) => {
   };
 }
 
-let informLoginFailure = (state, failedMessage) => {
+let informLoginFailure = (state) => {
   return {
     ...state,
-    isLoggedIn: false,
-    failedMessage: failedMessage
+    isLoggedIn: false
   };
+}
+
+let onRegistration = (state) => {
+  localStorage.removeItem('FinLogToken')
+
+  return {
+    ...state,
+    isLoggedIn: false
+  }
 }
 
 export default reducer;
