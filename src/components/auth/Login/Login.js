@@ -4,7 +4,7 @@ import {login} from "../../../stores/action-creators/AuthAC";
 import {connect} from "react-redux";
 
 import {validateAllControls} from "../../input-controls/control-helpers/CommonEventHandlers";
-import {Redirect, withRouter} from "react-router";
+import {Redirect} from "react-router";
 
 
 class Login extends React.Component {

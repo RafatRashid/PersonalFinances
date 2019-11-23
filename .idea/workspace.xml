@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="329c566f-586f-42a4-bb9f-d8f6ce718a80" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/Layout.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/Layout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/Main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/Sidebar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/finance/Finance.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/Main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/Home.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/actions/Actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/actions/Actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Sidebar.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,6 +86,8 @@
       <workItem from="1569338093046" duration="8832000" />
       <workItem from="1574004016822" duration="3845000" />
       <workItem from="1574087412068" duration="4476000" />
+      <workItem from="1574489000316" duration="2375000" />
+      <workItem from="1574495971012" duration="2118000" />
     </task>
     <servers />
   </component>

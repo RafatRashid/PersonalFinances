@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 const Sidebar = ({children}) => (
@@ -7,10 +8,10 @@ const Sidebar = ({children}) => (
       <nav>
         <ul className="nav flex-column bg-dark sidebar">
           <li className="nav-item">
-            <a className="nav-link active" href="#">Main</a>
+            <Link className="nav-link active" to="/">Main</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Financial Logs</a>
+            <Link className="nav-link" to="/finance">Financial Logs</Link>
           </li>
 
         </ul>

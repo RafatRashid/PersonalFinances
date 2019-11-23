@@ -1,0 +1,28 @@
+{
+    "finances": {
+
+        "1": {
+            "date": "2019-11-23T06:48:18.323Z",
+            "noOfTransactions": "2",
+            "totalInAmount": "500",
+            "totalOutAmount": "173"
+        }
+    },
+
+    "financeDetails": {
+
+        "1": {
+            "financeId": "1",
+            "date": "2019-11-23T06:48:18.323Z",
+            "amount": "500",
+            "transactionType": "in"
+        },
+        
+        "2": {
+            "financeId": "1",
+            "date": "2019-11-23T06:51:20.000Z",
+            "amount": "173",
+            "transactionType": "out"
+        }
+    }
+}
