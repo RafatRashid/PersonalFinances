@@ -1,17 +1,15 @@
-import React from 'react';
+import React from 'react'
+import moment from 'moment';
 
-class Finance extends React.Component {
-  render() {
-    return (
-      <div>
-        <h3>Finances</h3>
+import './Finance.css'
 
-        <div>Finance A</div>
-        <div>Finance B</div>
-        <div>Finance C</div>
-      </div>
-    );
-  }
+const Finance = ({finance}) => {
+  return (
+    <div className="finance">
+      Date: {moment(finance.date).format('DD-MM-YYYY')} <br />
+      Number of transactions: {finance.noOfTransactions} <br />
+    </div>
+  )
 }
 
-export default Finance;
+export default Finance

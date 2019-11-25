@@ -6,23 +6,23 @@ const fs = require('fs');
 const port = '8080';
 const financeStore = './finances.json';
 
-server.use(cors());     
+server.use(cors());
 
 server.get('/api/finances', (req, res) => {
     let raw = fs.readFileSync(financeStore);
-    let finances = JSON.parse(raw).finance;
+    let finances = JSON.parse(raw).finances;
 
-    return res.json(finances);
+    return res.json({ finances });
 });
 
-server.get('/api/finance', (req, res) => {
-    let {financeId} = req.query;
+server.get('/api/financesReducer', (req, res) => {
+    let { financeId } = req.query;
 
     let raw = fs.readFileSync(financeStore);
     let financeDetails = JSON.parse(raw).financeDetails;
 
     let filteredFinancialDetails = Object.keys(financeDetails).forEach(key => {
-        if(financeDetails[key].financeId == financeId)
+        if (financeDetails[key].financeId == financeId)
             return financeDetails[key].financeId;
     })
 

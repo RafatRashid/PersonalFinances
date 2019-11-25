@@ -101,7 +101,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.authStore.isLoggedIn
+    loggedIn: state.auth.isLoggedIn
   }
 }
 
