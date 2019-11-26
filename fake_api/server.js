@@ -11,7 +11,10 @@ server.use(cors());
 server.get('/api/finances', (req, res) => {
     let raw = fs.readFileSync(financeStore);
     let finances = JSON.parse(raw).finances;
-
+    finances = Object.keys(finances).map(id => {
+        finances[id].id = id
+        return finances[id]
+    })
     return res.json({ finances });
 });
 

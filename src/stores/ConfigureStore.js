@@ -1,11 +1,13 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import ReduxThunk from "redux-thunk";
 
 import auth from "./reducers/AuthReducer";
 import financeReducer from "./reducers/Finance";
+import spinnerReducer from './reducers/SpinnerReducer';
 
 const combinedReducer = {
   auth: auth,
+  spinner: spinnerReducer,
   finance: financeReducer
 }
 

@@ -13,7 +13,7 @@
 			"totalOutAmount": "0"
 		},
 		"3": {
-			"date": "2019-11-23T06:48:18.323Z",
+			"date": "2019-11-26T06:48:18.323Z",
 			"noOfTransactions": "3",
 			"totalInAmount": "1200",
 			"totalOutAmount": "500"
@@ -33,12 +33,37 @@
 			"amount": "500",
 			"transactionType": "in"
 		},
-
 		"2": {
 			"financeId": "1",
 			"date": "2019-11-23T06:51:20.000Z",
 			"amount": "173",
 			"transactionType": "out"
+		},
+
+		"3": {
+			"financeId": "2",
+			"date": "2019-11-18T06:51:20.000Z",
+			"amount": "22500",
+			"transactionType": "in"
+		},
+
+		"4": {
+			"financeId": "3",
+			"date": "2019-11-26T06:51:20.000Z",
+			"amount": "800",
+			"transactionType": "in"
+		},
+		"5": {
+			"financeId": "3",
+			"date": "2019-11-26T06:51:20.000Z",
+			"amount": "500",
+			"transactionType": "out"
+		},
+		"6": {
+			"financeId": "3",
+			"date": "2019-11-26T06:51:20.000Z",
+			"amount": "400",
+			"transactionType": "in"
 		}
 	}
 }

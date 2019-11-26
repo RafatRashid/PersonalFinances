@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from "react-redux";
+import { ToastContainer } from 'react-toastify';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import './index.css';
+import '../node_modules/@fortawesome/fontawesome-free/css/all.css'
 
 import App from './App';
 import store from './stores/ConfigureStore';
