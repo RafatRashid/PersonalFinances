@@ -1,44 +1,27 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-
+import { Switch } from 'react-router-dom';
 import './App.css';
 
-import Login from './components/auth/Login/Login';
-import Registration from './components/auth/Registration/Registration';
-import ProgressBar from "./components/ui/ProgressBar";
-
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
-import Main from "./components/Main";
+import Login from '../src/components/auth/Login/Login';
+import Layout from "./components/ui/Layout";
 
 
-const getLoggedInState = () => {
-  let token = localStorage.getItem('FinLogToken');
-  return token;
-}
+// const getLoggedInState = () => {
+//   return localStorage.getItem('FinLogToken');
+// }
 
-
-function App(props) {
-  let routes = null;
-
-  if (getLoggedInState() != null || props.loggedIn) {
-    routes = <Main />
-  } else {
-    routes = (
-      <React.Fragment>
-        <Route exact path='/' component={Login}/>
-        <Route exact path='/register' component={Registration}/>
-      </React.Fragment>
-    )
-  }
+function App() {
+  // let loggedInState = getLoggedInState();
+  let loggedInState = true;
 
   return (
     <React.Fragment>
       <div className='container-fluid'>
-        {routes}
+        <Switch>
+          <Layout />
+        </Switch>
       </div>
-      <ProgressBar visible={props.showSpinner}/>
+      <ProgressBar visible={props.showSpinner} />
     </React.Fragment>
   );
 }

@@ -1,0 +1,13 @@
+.finance {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 15px;
+    margin: 0 10px 10px;
+    width: 250px;
+    height: 80px;
+    border-radius: 10px;
+}
+
+.finance-collection {
+    margin-top: 15%;
+}

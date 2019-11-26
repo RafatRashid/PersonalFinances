@@ -1,11 +1,12 @@
 import React from 'react';
 import TextInput from "../../input-controls/TextInput";
-import {login} from "../../../stores/action-creators/AuthAC";
-import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
-import {Link} from 'react-router-dom';
+import { login } from "../../../stores/action-creators/AuthAC";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import {validateAllControls} from "../../input-controls/control-helpers/CommonEventHandlers";
+import { validateAllControls } from "../../input-controls/control-helpers/CommonEventHandlers";
+import { Redirect } from "react-router";
 
 
 class Login extends React.Component {
@@ -35,7 +36,7 @@ class Login extends React.Component {
   }
 
   onControlValueChange = (controlName, controlValue, controlIsValid, validationMessage) => {
-    let updatedState = {...this.state};
+    let updatedState = { ...this.state };
 
     updatedState[controlName].value = controlValue;
     updatedState[controlName].isValid = controlIsValid;
@@ -59,7 +60,7 @@ class Login extends React.Component {
               isControlValid={this.state.username.isValid}
               validationMessage={this.state.username.validationMessage}
               validationRules={this.state.username.validationRules}
-              setControlState={this.onControlValueChange}/>
+              setControlState={this.onControlValueChange} />
 
             <TextInput
               isPassword={true}
@@ -71,14 +72,14 @@ class Login extends React.Component {
               isControlValid={this.state.password.isValid}
               validationMessage={this.state.password.validationMessage}
               validationRules={this.state.password.validationRules}
-              setControlState={this.onControlValueChange}/>
+              setControlState={this.onControlValueChange} />
 
             <div className={"row"}>
               <div className={"col-md-6"}>
                 <button className='btn btn-primary'>Log in</button>
               </div>
 
-              <div className={"col-md-6"} style={{textAlign: "right"}}>
+              <div className={"col-md-6"} style={{ textAlign: "right" }}>
                 <Link to="/register">Click to login</Link>
               </div>
             </div>
@@ -93,11 +94,16 @@ class Login extends React.Component {
     ev.preventDefault();
 
     if (validateAllControls(this.state, this.onControlValueChange)) {
-      this.props.logIn({username: this.state.username.value, password: this.state.password.value});
+      this.props.logIn({ username: this.state.username.value, password: this.state.password.value });
     }
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.auth.isLoggedIn
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -105,4 +111,4 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(Login));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

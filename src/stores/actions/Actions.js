@@ -3,3 +3,8 @@ export const authActions = {
   LOGIN_FAILED: "LOGIN_FAILED",
   REGISTRATION: "REGISTRATION"
 };
+
+export const financeActions = {
+  FETCH_FINANCES: "FETCH_FINANCES",
+  FETCH_FINANCE_DETAIL: "FETCH_FINANCE_DETAIL",
+};
