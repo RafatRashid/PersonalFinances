@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import './Finance.css'
 
-const Finance = ({ finance, openDetail }) => {
+const FinanceCard = ({ finance, openDetail }) => {
   let financeMarkup = null
   if (finance) {
     financeMarkup = (
@@ -25,4 +25,4 @@ const Finance = ({ finance, openDetail }) => {
   return financeMarkup
 }
 
-export default Finance
+export default FinanceCard

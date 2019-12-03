@@ -1,10 +1,10 @@
-import {financeActions} from '../../actions/Actions';
+import { financeActions } from '../../actions/Actions';
 
 let financeDetailState = {}
 
 const financeDetailReducer = (state = financeDetailState, action) => {
 
-  switch(action.type) {
+  switch (action.type) {
     case financeActions.FETCH_FINANCE_DETAIL:
       return fetchFinanceDetail(state, action.payload)
     default:
@@ -12,8 +12,8 @@ const financeDetailReducer = (state = financeDetailState, action) => {
   }
 }
 
-const fetchFinanceDetail = (state, {financeId, detail}) => {
-  let financeDetailState = {...state}
+const fetchFinanceDetail = (state, { financeId, detail }) => {
+  let financeDetailState = { ...state }
   financeDetailState[financeId] = detail
   return financeDetailState
 }

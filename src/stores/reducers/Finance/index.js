@@ -1,14 +1,14 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
 import finances from './FinancesReducer'
-import financeDetails from './FinanceDetailReducer'
+import financeDetail from './FinanceDetailReducer'
 
 let financeReducer = combineReducers({
   allFinances: finances,
-  financeDetails: financeDetails
+  financeDetail: financeDetail
 })
 
 export default financeReducer;
 
 export const getFinances = state => state.finance.allFinances
-export const getFinanceDetails = state => state.finance.financeDetails
+export const getSelectedFinance = state => state.financeDetail

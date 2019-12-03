@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import './Sidebar.css';
 import defaultProfileImage from '../../../assets/images/img_avatar.png';
@@ -13,13 +13,13 @@ const Sidebar = () => {
 
             <li className="nav-item profile-nav">
               <div className="nav-link pl-0" title="logout">
-                <img className='profile-image' src={defaultProfileImage} height='50' width='50'/>
+                <img className='profile-image' src={defaultProfileImage} height='50' width='50' />
                 <span className="font-weight-bold profile-details">User name</span>
               </div>
             </li>
 
             <li className="nav-item">
-              <hr className='nav-items-seperator'/>
+              <hr className='nav-items-seperator' />
             </li>
 
             <li className="nav-item">

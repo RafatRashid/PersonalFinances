@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 import * as FinanceAc from '../../stores/action-creators/Finance'
 import { getFinances } from '../../stores/reducers/Finance'
-import Finance from "./Finance"
 import './Finance.css'
+import FinanceCard from './FinanceCard'
 
 class FinanceContainer extends React.Component {
   componentDidMount() {
@@ -14,12 +14,12 @@ class FinanceContainer extends React.Component {
   render() {
     let finances = Object.keys(this.props.finances).map(financeId => {
       return (
-        <Finance key={financeId} finance={this.props.finances[financeId]}
+        <FinanceCard key={financeId} finance={this.props.finances[financeId]}
           openDetail={this.openFinanceDetail} />
       )
     })
 
-    finances = [(<Finance key={'add' + 0} openDetail={this.createNewFinance} />), ...finances]
+    finances = [(<FinanceCard key={'add' + 0} openDetail={this.createNewFinance} />), ...finances]
 
     return (
       <div>
@@ -34,7 +34,7 @@ class FinanceContainer extends React.Component {
 
   // handler functions
   openFinanceDetail = financeId => {
-    console.log(financeId);
+    this.props.history.push('/finance/info')
   }
 
   createNewFinance = () => {
