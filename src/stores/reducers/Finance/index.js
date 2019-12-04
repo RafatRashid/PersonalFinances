@@ -11,4 +11,5 @@ let financeReducer = combineReducers({
 export default financeReducer;
 
 export const getFinances = state => state.finance.allFinances
-export const getSelectedFinance = state => state.financeDetail
+export const getSelectedFinanceId = state => state.finance.financeDetail.financeId
+export const getSelectedFinanceDetails = state => state.finance.financeDetail.financeDetails

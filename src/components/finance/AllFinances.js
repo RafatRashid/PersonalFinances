@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import * as FinanceAc from '../../stores/action-creators/Finance'
-import { getFinances } from '../../stores/reducers/Finance'
+import {getFinances, getSelectedFinanceId} from '../../stores/reducers/Finance'
 import './Finance.css'
 import FinanceCard from './FinanceCard'
+import {financeActions} from "../../stores/actions/Actions";
 
-class FinanceContainer extends React.Component {
+class AllFinances extends React.Component {
   componentDidMount() {
     this.props.fetchAllFinances();
   }
@@ -33,25 +34,30 @@ class FinanceContainer extends React.Component {
   }
 
   // handler functions
-  openFinanceDetail = financeId => {
-    this.props.history.push('/finance/info')
-  }
+  openFinanceDetail = financeId => this.props.setFinanceId(financeId)
 
   createNewFinance = () => {
     console.log('creating new boooyah');
+  }
+
+  componentDidUpdate() {
+    if(this.props.financeId > 0)
+      this.props.history.push('/finance/info')
   }
 }
 
 const mapStateToProps = state => {
   return {
-    finances: getFinances(state)
+    finances: getFinances(state),
+    financeId: getSelectedFinanceId(state)
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAllFinances: () => dispatch(FinanceAc.fetchAllFinances())
+    fetchAllFinances: () => dispatch(FinanceAc.fetchAllFinances()),
+    setFinanceId: financeId => dispatch(FinanceAc.setFinanceId(financeId))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FinanceContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(AllFinances)

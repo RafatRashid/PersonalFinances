@@ -6,5 +6,6 @@ export const authActions = {
 
 export const financeActions = {
   FETCH_FINANCES: "FETCH_FINANCES",
+  SET_FINANCE_ID: "SET_FINANCE_ID",
   FETCH_FINANCE_DETAIL: "FETCH_FINANCE_DETAIL",
 };

@@ -18,18 +18,13 @@ server.get('/api/finances', (req, res) => {
     return res.json({ finances });
 });
 
-server.get('/api/financesReducer', (req, res) => {
+server.get('/api/finance', (req, res) => {
     let { financeId } = req.query;
 
     let raw = fs.readFileSync(financeStore);
-    let financeDetails = JSON.parse(raw).financeDetails;
+    let financeDetails = JSON.parse(raw).financeDetails[financeId.toString()];
 
-    let filteredFinancialDetails = Object.keys(financeDetails).forEach(key => {
-        if (financeDetails[key].financeId == financeId)
-            return financeDetails[key].financeId;
-    })
-
-    return res.json(filteredFinancialDetails);
+    return res.json({financeDetails});
 });
 
 server.listen(port, () => console.log('listening on ', port));

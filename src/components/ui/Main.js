@@ -5,13 +5,13 @@ import { Route } from 'react-router-dom';
 import './Main.css';
 
 // import components
-import Finance from "../finance/FinanceContainer";
+import AllFinance from "../finance/AllFinances";
 import FinanceInfo from '../finance/FinanceInfo';
 
 const Main = () => {
   return (
     <div className="main">
-      <Route exact path="/finance" component={Finance} />
+      <Route exact path="/finance" component={AllFinance} />
       <Route exact path="/finance/info" component={FinanceInfo} />
     </div>
   )
