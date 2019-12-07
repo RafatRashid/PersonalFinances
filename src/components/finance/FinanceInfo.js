@@ -1,47 +1,68 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getSelectedFinanceDetails, getSelectedFinanceId} from '../../stores/reducers/Finance'
+import {getSelectedFinanceDetails} from '../../stores/reducers/Finance'
 import * as FinanceAc from '../../stores/action-creators/Finance'
+
+import moment from 'moment'
 
 class FinanceInfo extends React.Component {
   componentDidMount() {
-    if(this.props.financeId === 0)
-      this.props.history.push('/finance')
-    this.props.fetchFinanceDetails(this.props.financeId)
+    let {financeId} = this.props.location.state;
+    this.props.fetchFinanceDetails(financeId)
   }
 
   render() {
+    let totalIns = 0
+    let totalOuts = 0
+
     let financeDetails = !this.props.currentFinanceDetails
-      ? (<tr><td colSpan="4">No details available</td></tr>)
-      : this.props.currentFinanceDetails.map(fd => {
-      return (
-        <tr key={fd.detailId}>
-          <td>{fd.description}</td>
-          <td>{fd.date}</td>
-          <td>{fd.transactionType === 'in' ? fd.amount : ''}</td>
-          <td>{fd.transactionType === 'out' ? fd.amount : ''}</td>
-        </tr>
-      )
-    })
+      ? (
+        <tr>
+          <td colSpan="4">No details available</td>
+        </tr>)
+      : this.props.currentFinanceDetails
+        .map(fd => {
+          totalIns += fd.transactionType === 'in' ? parseInt(fd.amount) : 0
+          totalOuts += fd.transactionType === 'out' ? parseInt(fd.amount) : 0
+
+          return (
+            <tr key={fd.detailId}>
+              <td>{fd.description}</td>
+              <td>{moment(fd.date).format('DD-MM-YYYY')}</td>
+              <td>{fd.transactionType === 'in' ? fd.amount : ''}</td>
+              <td>{fd.transactionType === 'out' ? fd.amount : ''}</td>
+            </tr>
+          )
+        })
 
     return (
-      <div>
-        <h4>Finance information</h4>
+      <div className='row'>
+        <div className='col-md-12'>
 
-        <table className="table table-hover">
-          <thead>
+          <h4>Finance information</h4>
+
+          <table className="table table-hover">
+            <thead>
             <tr>
               <th>Description</th>
               <th>Date</th>
               <th>In</th>
               <th>Out</th>
             </tr>
-          </thead>
+            </thead>
 
-          <tbody>
+            <tbody>
             {financeDetails}
-          </tbody>
-        </table>
+
+            <tr className='total'>
+              <td colSpan='2'>Total</td>
+              <td>{totalIns}</td>
+              <td>{totalOuts}</td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
       </div>
     )
   }
@@ -49,8 +70,7 @@ class FinanceInfo extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentFinanceDetails: getSelectedFinanceDetails(state),
-    financeId: getSelectedFinanceId(state)
+    currentFinanceDetails: getSelectedFinanceDetails(state)
   }
 }
 

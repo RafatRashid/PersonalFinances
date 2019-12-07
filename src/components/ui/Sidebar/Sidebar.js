@@ -23,7 +23,7 @@ const Sidebar = () => {
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link pl-0" to='/finances'>
+              <Link className="nav-link pl-0" to='/finance'>
                 {/*<i className="fa fa-star fa-fw"></i>*/}
                 <span className="d-none d-md-inline nav-item-description">Finances</span></Link>
             </li>

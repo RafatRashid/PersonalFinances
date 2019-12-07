@@ -17,7 +17,6 @@ const logger = store => next => action => {
   next(action)
   console.log('changed store: ')
   console.log(store.getState())
-  console.log('ending dispatching action: ', action)
   console.log('%c ____________________________________________', 'background: #222; color: #bada55')
 }
 

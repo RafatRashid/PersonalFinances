@@ -27,4 +27,8 @@ server.get('/api/finance', (req, res) => {
     return res.json({financeDetails});
 });
 
+server.post('/api/finance', (req, res) => {
+    
+})
+
 server.listen(port, () => console.log('listening on ', port));
