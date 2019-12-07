@@ -1,20 +1,18 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React from 'react'
+import Sidebar from "./Sidebar/Sidebar"
+import {Route, Switch} from "react-router-dom"
 
-// import css
-import './Main.css';
-
-// import components
-import AllFinance from "../finance/AllFinances";
-import FinanceInfo from '../finance/FinanceInfo';
+import AllFinances from '../finance/AllFinances'
 
 const Main = () => {
   return (
-    <div className="main">
-      <Route exact path="/finance" component={AllFinance} />
-      <Route exact path="/finance/info" component={FinanceInfo} />
-    </div>
+    <main className="col bg-faded py-3">
+      <Switch>
+        <Route exact path='/finances' component={AllFinances}/>
+        <Route exact path='/reports' component={() => <h3>Reports</h3>}/>
+      </Switch>
+    </main>
   )
 }
 
-export default Main;
+export default Main

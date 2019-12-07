@@ -1,19 +1,21 @@
 import React from 'react';
-// component imports
-import Header from "./Header";
+
 // css imports
 import './Layout.css';
-import Sidebar from "../ui/Sidebar";
 import Main from "./Main";
+import Sidebar from "./Sidebar/Sidebar";
+import Header from "./Header";
 
 function Layout() {
   return (
     <React.Fragment>
-      <Header />
-      <Sidebar>
-        <Main />
-      </Sidebar>
+      {/*<Header/>*/}
+      <div className="row min-vh-100">
+        <Sidebar/>
+        <Main/>
+      </div>
     </React.Fragment>
+
   )
 }
 

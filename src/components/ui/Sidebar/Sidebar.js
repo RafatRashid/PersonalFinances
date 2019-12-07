@@ -23,17 +23,14 @@ const Sidebar = () => {
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link pl-0" to='/about'><i className="fa fa-star fa-fw"></i>
-                <span className="d-none d-md-inline nav-item-description">Accounts</span></Link>
+              <Link className="nav-link pl-0" to='/finances'>
+                {/*<i className="fa fa-star fa-fw"></i>*/}
+                <span className="d-none d-md-inline nav-item-description">Finances</span></Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link pl-0" to='/about'><i className="fa fa-star fa-fw"></i>
-                <span className="d-none d-md-inline nav-item-description">Accounts</span></Link>
-            </li>
-
-            <li className="nav-item">
-              <Link className="nav-link pl-0" to='/contact'><i className="fa fa-star fa-fw"></i>
+              <Link className="nav-link pl-0" to='/reports'>
+                {/*<i className="fa fa-star fa-fw"></i>*/}
                 <span className="d-none d-md-inline nav-item-description">Reports</span></Link>
             </li>
           </ul>
