@@ -24,7 +24,7 @@ server.get('/api/finance', (req, res) => {
     let raw = fs.readFileSync(financeStore);
     let financeDetails = JSON.parse(raw).financeDetails[financeId.toString()];
 
-    return res.json({financeDetails});
+    return res.json({financeDetails: financeDetails ? financeDetails : []});
 });
 
 server.post('/api/finance', (req, res) => {

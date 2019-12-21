@@ -26,7 +26,7 @@ export const fetchFinanceDetail = financeId => dispatch => {
     .then(
       response => dispatch({
           type: financeActions.FETCH_FINANCE_DETAIL,
-          payload: {...response.data}
+          payload: response.data
         },
         error => {
           console.log(error)

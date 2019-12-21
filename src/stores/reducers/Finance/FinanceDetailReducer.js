@@ -14,7 +14,9 @@ const financeDetailReducer = (state = currentFinanceDetail, action) => {
 }
 
 const fetchFinanceDetail = (state, { financeDetails }) => {
-  return [...financeDetails]
+  let currentState = [...state]
+  currentState = financeDetails
+  return currentState
 }
 
 export default financeDetailReducer;

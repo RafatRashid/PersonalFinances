@@ -4,7 +4,6 @@ import FinancesCollection from "./FinancesCollection";
 import FinanceInfo from "./FinanceInfo";
 
 const FinanceContainer = (props) => {
-  console.log(props)
   return (
     <Switch>
       <Route path='/finance/info' component={FinanceInfo}/>
