@@ -14,13 +14,6 @@ export const fetchAllFinances = () => dispatch => {
     )
 }
 
-export const setFinanceId = financeId => dispatch => {
-  dispatch({
-    type: financeActions.SET_FINANCE_ID,
-    payload: {financeId}
-  })
-}
-
 export const fetchFinanceDetail = financeId => dispatch => {
   return axios.get('/finance?financeId=' + financeId)
     .then(
@@ -31,5 +24,18 @@ export const fetchFinanceDetail = financeId => dispatch => {
         error => {
           console.log(error)
         })
+    )
+}
+
+export const saveFinanceDetail = (financeId, financeDetail) => dispatch => {
+  return axios.post('/finance', {financeId, financeDetail})
+    .then(
+      response => dispatch({
+        type: financeActions.SAVED_FINANCE_DETAIL,
+        payload: response.data
+      }),
+      error => {
+        console.log(error)
+      }
     )
 }

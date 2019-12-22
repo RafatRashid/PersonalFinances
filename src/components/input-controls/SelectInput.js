@@ -1,19 +1,22 @@
 import React from 'react';
 
-const SelectInput = ({ label = "Drop down", options = [] }) => {
+const SelectInput = ({ label = "Drop down", name='select', options = [], selected='', onChange }) => {
 
-  let optionJsx = options.length === 0
-    ? (<option value="">Select an option</option>)
-    : options.map(op => {
+  let optionJsx = options.map(op => {
       return (
         <option key={op.value} value={op.value}>{op.text}</option>
       )
     });
 
   return (
-    <div>
-      <label>{label}</label>
-      <select>
+    <div className='form-group'>
+      <label className='form-text'>{label}</label>
+      <select
+        className='form-control'
+        name={name}
+        defaultValue={selected}
+        onChange={(ev) => onChange(ev)}
+      >
         {optionJsx}
       </select>
     </div>

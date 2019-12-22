@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import '../node_modules/@fortawesome/fontawesome-free/css/all.css'
+import "react-datepicker/dist/react-datepicker.css";
 
 import App from './App';
 import store from './stores/ConfigureStore';
