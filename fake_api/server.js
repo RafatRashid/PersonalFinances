@@ -1,11 +1,14 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const server = express();
 const cors = require('cors');
 const fs = require('fs');
 
-const port = '8080';
+const port = '3000';
 const financeStore = './finances.json';
 
+server.use(bodyParser.urlencoded({extended: false}));
+server.use(bodyParser.json());
 server.use(cors());
 
 server.get('/api/finances', (req, res) => {
@@ -28,7 +31,30 @@ server.get('/api/finance', (req, res) => {
 });
 
 server.post('/api/finance', (req, res) => {
+    let { financeId } = req.body;
+    let fileContent = fs.readFileSync(financeStore);
+    let raw = JSON.parse(fileContent);
     
+    let financeDetails = raw.financeDetails[financeId];
+    let currentFinanceDetailId = raw.financeDetailId;
+
+    let {financeDetail} = req.body;
+    financeDetail.detailId = (parseInt(currentFinanceDetailId)+1).toString();
+    financeDetails.push(financeDetail);
+
+    raw.financeDetails[financeId] = financeDetails;
+    raw.financeDetailId = financeDetail.detailId.toString();
+    try{
+        fs.writeFileSync(financeStore, JSON.stringify(raw));
+        return res.json({
+            financeId,
+            financeDetail
+        });
+    }
+    catch(ex) {
+        return res.status(500).json({message: ex})
+    }
+
 })
 
 server.listen(port, () => console.log('listening on ', port));

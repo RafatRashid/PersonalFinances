@@ -11,6 +11,10 @@ const selectOptions = [
 ]
 
 const FinanceDetailEditor = ({currentDetail, changeHandler, saveHandler, closeHandler}) => {
+  currentDetail.transactionType = currentDetail.transactionType == null || currentDetail.transactionType == ''
+                                    ? "in"
+                                    : currentDetail.transactionType;
+
   return (
     <div style={{padding: '0 5px'}}>
       <label><b>New Finance</b></label><br />

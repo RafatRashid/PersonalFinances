@@ -8,7 +8,7 @@ const NumberInput = (props) => {
       <label className='control-label'>{props.label}</label>
 
       <input type='number' name={props.name} placeholder={props.placeholder}
-             className='control-input' defaultValue={props.value}
+             className='control-input' value={props.value}
              onChange={(ev) => onChange(ev)}/>
     </div>
   );

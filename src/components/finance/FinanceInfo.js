@@ -5,17 +5,19 @@ import * as FinanceAc from '../../stores/action-creators/Finance'
 import FinanceDetail from "./FinanceDetail";
 import FinanceDetailEditor from "./FinanceDetailEditor";
 
+const defaultDetail = {
+  description: '',
+  amount: 0,
+  transactionType: '',
+  date: ''
+}
+
 class FinanceInfo extends React.Component {
   state = {
-    editorIsOpen: true,
-    detailsColSize: 7,
+    editorIsOpen: false,
+    detailsColSize: 12,
 
-    currentDetail: {
-      description: '',
-      amount: 0,
-      transactionType: '',
-      date: ''
-    }
+    currentDetail: {...defaultDetail}
   }
 
   componentDidMount() {
@@ -41,7 +43,8 @@ class FinanceInfo extends React.Component {
 
           <div className='row'>
             <div className={'col-md-' + this.state.detailsColSize}>
-              <FinanceDetail/>
+              <FinanceDetail
+                onClick={this.getSelectedDetail}/>
             </div>
 
             <div className={'col-md-' + (12 - this.state.detailsColSize)} hidden={!this.state.editorIsOpen}>
@@ -59,32 +62,43 @@ class FinanceInfo extends React.Component {
     )
   }
 
+  getSelectedDetail = detail => {
+    this.openEditor(detail)
+  }
+
   saveDetail = (ev) => {
     ev.preventDefault()
     this.props.saveFinanceDetail(this.props.location.state.financeId, this.state.currentDetail)
+    this.closeEditor()
   }
 
   closeEditor = (ev) => {
-    ev.preventDefault()
+    if (ev) ev.preventDefault()
 
     this.setState({
       detailsColSize: 12,
-      editorIsOpen: false
+      editorIsOpen: false,
+      currentDetail: {...defaultDetail}
     })
   }
 
-  openEditor = () => {
-    this.setState({
+  openEditor = (detailToEdit) => {
+    let state = {
+      ...this.state,
       detailsColSize: 7,
       editorIsOpen: true
-    })
+    }
+    if (detailToEdit)
+      state.currentDetail = detailToEdit
+
+    this.setState(state)
   }
 
   changeHandler = (ev, date) => {
     let name = null
     let value = null
-    
-    if(date) {
+
+    if (date) {
       name = 'date'
       value = date.toISOString()
     } else {

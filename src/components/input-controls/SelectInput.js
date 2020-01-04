@@ -14,7 +14,7 @@ const SelectInput = ({ label = "Drop down", name='select', options = [], selecte
       <select
         className='form-control'
         name={name}
-        defaultValue={selected}
+        value={selected}
         onChange={(ev) => onChange(ev)}
       >
         {optionJsx}

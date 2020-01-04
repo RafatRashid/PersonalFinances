@@ -3,7 +3,7 @@ import moment from "moment"
 import {connect} from 'react-redux'
 import {getSelectedFinanceDetails} from "../../stores/reducers/Finance";
 
-const processFinanceDetails = (currentFinanceDetails) => {
+const processFinanceDetails = (currentFinanceDetails, clickHandler) => {
     let totalIns = 0
     let totalOuts = 0
 
@@ -18,7 +18,7 @@ const processFinanceDetails = (currentFinanceDetails) => {
                 totalOuts += fd.transactionType === 'out' ? parseInt(fd.amount) : 0
 
                 return (
-                    <tr key={fd.detailId}>
+                    <tr key={fd.detailId} onClick={() => clickHandler(fd)}>
                         <td>{fd.description}</td>
                         <td>{moment(fd.date).format('DD-MM-YYYY')}</td>
                         <td>{fd.transactionType === 'in' ? fd.amount : ''}</td>
@@ -30,7 +30,7 @@ const processFinanceDetails = (currentFinanceDetails) => {
 }
 
 const FinanceDetail = (props) => {
-    let {financeDetails, totalIns, totalOuts} = processFinanceDetails(props.currentFinanceDetails)
+    let {financeDetails, totalIns, totalOuts} = processFinanceDetails(props.currentFinanceDetails, props.onClick)
 
     return (
         <table className="table table-hover">

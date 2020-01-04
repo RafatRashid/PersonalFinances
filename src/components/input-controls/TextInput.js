@@ -10,7 +10,7 @@ const TextInput = (props) => {
       <label className='control-label'>{props.label}</label>
 
       <input type={type} name={props.name} placeholder={props.placeholder}
-             className='control-input' defaultValue={props.value}
+             className='control-input' value={props.value}
              onChange={(ev) => onChange(ev)}
              autoComplete="false"/>
     </div>
