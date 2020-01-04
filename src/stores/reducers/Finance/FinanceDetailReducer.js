@@ -12,6 +12,9 @@ const financeDetailReducer = (state = currentFinanceDetail, action) => {
     case financeActions.SAVED_FINANCE_DETAIL:
       return appendNewDetailToList(state, action.payload)
 
+    case financeActions.EDITED_FINANCE_DETAIL:
+      return replaceDetailToList(state, action.payload)
+
     default:
       return state
   }
@@ -25,10 +28,18 @@ const fetchFinanceDetail = (state, {financeDetails}) => {
 
 const appendNewDetailToList = (state, {financeId, financeDetail}) => {
   let currentState = [...state]
-  if(currentState.length > 0)
+  if (currentState.length > 0)
     currentState.push(financeDetail)
   else
     currentState = [financeDetail]
+
+  return currentState
+}
+
+const replaceDetailToList = (state, {financeDetail}) => {
+  let currentState = [...state]
+  let detailIndex = currentState.findIndex(x => x.detailId == financeDetail.detailId)
+  currentState[detailIndex] = financeDetail
 
   return currentState
 }

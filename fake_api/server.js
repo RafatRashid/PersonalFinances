@@ -32,13 +32,13 @@ server.get('/api/finance', (req, res) => {
 
 server.post('/api/finance', (req, res) => {
     let { financeId } = req.body;
+    let {financeDetail} = req.body;
     let fileContent = fs.readFileSync(financeStore);
     let raw = JSON.parse(fileContent);
     
     let financeDetails = raw.financeDetails[financeId];
     let currentFinanceDetailId = raw.financeDetailId;
 
-    let {financeDetail} = req.body;
     financeDetail.detailId = (parseInt(currentFinanceDetailId)+1).toString();
     financeDetails.push(financeDetail);
 
@@ -54,7 +54,29 @@ server.post('/api/finance', (req, res) => {
     catch(ex) {
         return res.status(500).json({message: ex})
     }
+})
 
+server.put('/api/finance', (req, res) => {
+    let { financeId } = req.body;
+    let {financeDetail} = req.body;
+    let fileContent = fs.readFileSync(financeStore);
+    let raw = JSON.parse(fileContent);
+
+    let financeDetails = raw.financeDetails[financeId];
+    let detailIndex = financeDetails.findIndex(x => x.detailId == financeDetail.detailId)
+    financeDetails[detailIndex] = financeDetail
+    raw.financeDetails[financeId] = financeDetails;
+
+    try{
+        fs.writeFileSync(financeStore, JSON.stringify(raw));
+        return res.json({
+            financeId,
+            financeDetail
+        });
+    }
+    catch(ex) {
+        return res.status(500).json({message: ex})
+    }
 })
 
 server.listen(port, () => console.log('listening on ', port));
