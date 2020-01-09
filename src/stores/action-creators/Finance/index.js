@@ -29,7 +29,7 @@ export const fetchFinanceDetail = financeId => dispatch => {
 
 export const saveFinanceDetail = (financeId, financeDetail) => dispatch => {
   console.log(financeDetail.detailId)
-  return financeDetail.detailId == 0
+  return financeDetail.detailId == null
     ? postFinanceDetail(financeId, financeDetail, dispatch)
     : putFinanceDetail(financeId, financeDetail, dispatch)
 }

@@ -18,7 +18,7 @@ const processFinanceDetails = (currentFinanceDetails, clickHandler) => {
                 totalOuts += fd.transactionType === 'out' ? parseInt(fd.amount) : 0
 
                 return (
-                    <tr key={fd.detailId} onClick={() => clickHandler(fd)}>
+                    <tr key={fd.detailId} onClick={(ev) => clickHandler(fd)}>
                         <td>{fd.description}</td>
                         <td>{moment(fd.date).format('DD-MM-YYYY')}</td>
                         <td>{fd.transactionType === 'in' ? fd.amount : ''}</td>

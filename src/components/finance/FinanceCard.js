@@ -8,8 +8,10 @@ const FinanceCard = ({ finance, openDetail }) => {
   if (finance) {
     financeMarkup = (
       <div className="finance" onClick={() => openDetail(finance.id)}>
-        Date: {moment(finance.date).format('DD-MM-YYYY')}
-        Number of transactions: {finance.noOfTransactions}
+        Finances of: {finance.month.toUpperCase()}, {finance.year} <br />
+        Number of transactions: {finance.noOfTransactions}<br />
+        Total In: {finance.totalInAmount} <br />
+        Total Out: {finance.totalOutAmount} <br />
       </div>
     )
   }

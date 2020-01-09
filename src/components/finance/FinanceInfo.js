@@ -35,7 +35,7 @@ class FinanceInfo extends React.Component {
               <h4>Finance Details</h4>
             </div>
             <div className='col-md-1'>
-              <a onClick={this.openEditor}>
+              <a onClick={() => this.openEditor()}>
                 <i className='fa fa-plus-square' style={{marginTop: '5px', fontSize: '20px'}}></i>
               </a>
             </div>
@@ -63,7 +63,7 @@ class FinanceInfo extends React.Component {
   }
 
   getSelectedDetail = detail => {
-    this.openEditor(detail)
+    this.openEditor(null, detail)
   }
 
   saveDetail = (ev) => {
@@ -82,7 +82,7 @@ class FinanceInfo extends React.Component {
     })
   }
 
-  openEditor = (detailToEdit) => {
+  openEditor = (ev, detailToEdit) => {
     let state = {
       ...this.state,
       detailsColSize: 7,
