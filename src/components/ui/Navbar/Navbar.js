@@ -6,13 +6,19 @@ import defaultProfileImage from '../../../assets/images/img_avatar.png';
 
 const Navbar = () => {
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <ul className="flex-row navbar-nav w-100 justify-content-between">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <ul className="navbar-nav w-100 ">
 
-        <li className="nav-item">
+        <li className="nav-item links">
           <Link className="nav-link pl-0" to='/finance'>
             <i className="fas fa-money-bill"></i>
-            <span className="d-none d-md-inline nav-item-description">Finances</span></Link>
+            <span className="nav-item-description">Finances</span></Link>
+        </li>
+
+        <li className="nav-item links">
+          <Link className="nav-link pl-0" to='/stats'>
+            <i className="fas fa-chart-bar"></i>
+            <span className="nav-item-description">Stats</span></Link>
         </li>
 
         <li className="nav-item profile-nav">
