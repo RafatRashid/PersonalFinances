@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from "moment"
-import {connect} from 'react-redux'
-import {getSelectedFinanceDetails} from "../../stores/reducers/Finance";
+import { connect } from 'react-redux'
+import { getSelectedFinanceDetails } from "../../stores/reducers/Finance";
 
 const processFinanceDetails = (currentFinanceDetails, clickHandler) => {
     let totalIns = 0
@@ -26,33 +26,40 @@ const processFinanceDetails = (currentFinanceDetails, clickHandler) => {
                     </tr>
                 )
             })
-    return {financeDetails, totalIns, totalOuts}
+    return { financeDetails, totalIns, totalOuts }
 }
 
 const FinanceDetail = (props) => {
-    let {financeDetails, totalIns, totalOuts} = processFinanceDetails(props.currentFinanceDetails, props.onClick)
-
+    let { financeDetails, totalIns, totalOuts } = processFinanceDetails(props.currentFinanceDetails, props.onClick)
+    let totalDiff = totalIns - totalOuts
     return (
-        <table className="table table-hover">
-            <thead>
-            <tr>
-                <th>Description</th>
-                <th>Date</th>
-                <th>In</th>
-                <th>Out</th>
-            </tr>
-            </thead>
+        <React.Fragment>
+            <table className="table table-hover">
+                <thead className='thead-dark'>
+                    <tr>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>In</th>
+                        <th>Out</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-            {financeDetails}
+                <tbody>
+                    {financeDetails}
 
-            <tr className='total'>
-                <td colSpan='2'>Total</td>
-                <td>{totalIns}</td>
-                <td>{totalOuts}</td>
-            </tr>
-            </tbody>
-        </table>
+                    <tr className='total'>
+                        <td colSpan='2'>Total</td>
+                        <td>{totalIns}</td>
+                        <td>{totalOuts}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div className={'row total-balance alert alert-' + (totalDiff > 0 ? 'primary' : 'danger')}>
+                <div className='col-md-6 text-right'>Balance</div>
+                <div className='col-md-6'>{totalDiff}</div>
+            </div>
+        </React.Fragment>
     )
 }
 

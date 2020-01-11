@@ -15,8 +15,9 @@
 
 #addIcon {
 	position: relative;
-	top: 5px;
+	top: 20px;
 	font-size: 20px;
+	cursor: pointer;
 }
 
 .total td {
@@ -42,4 +43,12 @@
 	font-size: 20px;
 	padding-top: 15px;
 	cursor: pointer;
+}
+
+.finance-info-title {
+	margin-top: 20px;
+}
+
+.total-balance {
+	font-size: 20px;
 }

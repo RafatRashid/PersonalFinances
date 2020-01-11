@@ -1,6 +1,6 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {getSelectedFinanceDetails} from '../../stores/reducers/Finance'
+import { connect } from 'react-redux'
+import { getSelectedFinanceDetails } from '../../stores/reducers/Finance'
 import * as FinanceAc from '../../stores/action-creators/Finance'
 import FinanceDetail from "./FinanceDetail";
 import FinanceDetailEditor from "./FinanceDetailEditor";
@@ -16,13 +16,16 @@ class FinanceInfo extends React.Component {
   state = {
     editorIsOpen: false,
     detailsColSize: 12,
-
-    currentDetail: {...defaultDetail}
+    financeTitle: '',
+    currentDetail: { ...defaultDetail }
   }
 
   componentDidMount() {
-    let {financeId} = this.props.location.state;
+    let { financeId, financeInfo } = this.props.location.state;
     this.props.fetchFinanceDetails(financeId)
+    this.setState({
+      financeTitle: financeInfo
+    })
   }
 
   render() {
@@ -31,20 +34,20 @@ class FinanceInfo extends React.Component {
         <div className='col-md-12'>
 
           <div className='row'>
-            <div className='col-md-11'>
-              <h4>Finance Details</h4>
+            <div className='col-md-11 finance-info-title'>
+              <h4>Finance Details for <b>{this.state.financeTitle.toUpperCase()}</b></h4>
             </div>
             <div className='col-md-1'>
-              <a onClick={() => this.openEditor()}>
-                <i className='fa fa-plus-square' style={{marginTop: '5px', fontSize: '20px'}}></i>
+              <a onClick={() => this.openEditor()} id='addIcon'>
+                <i className='fa fa-plus-square' style={{ marginTop: '5px', fontSize: '20px' }}></i>
               </a>
             </div>
           </div>
-
+          <br/>
           <div className='row'>
             <div className={'col-md-' + this.state.detailsColSize}>
               <FinanceDetail
-                onClick={this.getSelectedDetail}/>
+                onClick={this.getSelectedDetail} />
             </div>
 
             <div className={'col-md-' + (12 - this.state.detailsColSize)} hidden={!this.state.editorIsOpen}>
@@ -78,7 +81,7 @@ class FinanceInfo extends React.Component {
     this.setState({
       detailsColSize: 12,
       editorIsOpen: false,
-      currentDetail: {...defaultDetail}
+      currentDetail: { ...defaultDetail }
     })
   }
 
@@ -106,7 +109,7 @@ class FinanceInfo extends React.Component {
       value = ev.target.value
     }
 
-    let currentDetail = {...this.state.currentDetail}
+    let currentDetail = { ...this.state.currentDetail }
     currentDetail[name] = value
     this.setState({
       currentDetail: currentDetail

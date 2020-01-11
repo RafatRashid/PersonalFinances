@@ -7,7 +7,9 @@ const FinanceCard = ({ finance, openDetail }) => {
   let financeMarkup = null
   if (finance) {
     financeMarkup = (
-      <div className="finance" onClick={() => openDetail(finance.id)}>
+      <div className="finance"
+        onClick={() => openDetail(finance.id, `${finance.month}, ${finance.year}`)}>
+        
         Finances for: {finance.month.toUpperCase()}, {finance.year} <br />
         Number of transactions: {finance.noOfTransactions}<br />
         Total In: {finance.totalInAmount} <br />

@@ -52,10 +52,10 @@ class FinancesCollection extends React.Component {
   }
 
   // handler functions
-  openFinanceDetail = financeId => {
+  openFinanceDetail = (financeId, financeInfo) => {
     return this.props.history.push({
       pathname: '/finance/info',
-      state: { financeId }
+      state: { financeId, financeInfo }
     })
   }
 
