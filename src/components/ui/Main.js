@@ -8,7 +8,7 @@ const Main = () => {
     <main className="col bg-faded py-3">
       <div className='container'>
         <Switch>
-          <Route path='/finance' component={FinanceContainer}/>
+          <Route path='/' component={FinanceContainer}/>
           <Route exact path='/reports' component={() => <h3>Reports</h3>}/>
         </Switch>
       </div>

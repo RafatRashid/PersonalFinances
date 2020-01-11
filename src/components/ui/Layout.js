@@ -5,16 +5,14 @@ import 'react-toastify/dist/ReactToastify.css';
 // css imports
 import './Layout.css';
 import Main from "./Main";
-import Sidebar from "./Sidebar/Sidebar";
-import Header from "./Header";
+import Navbar from "./Navbar/Navbar";
 
 function Layout() {
   return (
     <React.Fragment>
-      {/*<Header/>*/}
       <ToastContainer />
-      <div className="row min-vh-100">
-        <Sidebar/>
+      <div className="min-vh-100">
+        <Navbar/>
         <Main/>
       </div>
     </React.Fragment>
