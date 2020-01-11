@@ -70,7 +70,7 @@ server.put('/api/finance', (req, res) => {
   let finance = raw.finances[financeId];
   let financeDetails = raw.financeDetails[financeId];
   let detailIndex = financeDetails.findIndex(x => x.detailId == financeDetail.detailId)
-  
+
   financeDetails[detailIndex] = financeDetail
   finance = updateFinance(finance, financeDetails);
 
@@ -89,15 +89,52 @@ server.put('/api/finance', (req, res) => {
   }
 })
 
+server.post('/api/finance/newlog', (req, res) => {
+  let { month, year } = req.body
+
+  let fileContent = fs.readFileSync(financeStore);
+  let raw = JSON.parse(fileContent);
+
+  let isDuplicateLog = false
+  Object.keys(raw.finances).forEach(fl => {
+    if(raw.finances[fl].month == month && raw.finances[fl].year == year) 
+      isDuplicateLog = true
+  });
+  if(isDuplicateLog)
+    return res.status(500).json({message: `Log for ${month}, ${year} already exists`})
+
+  let newFinance = { month: month, year: year, noOfTransactions: 0, totalInAmount: 0, totalOutAmount: 0 }
+  let newFinanceId = parseInt(raw.financeId) + 1;
+
+  raw.finances[newFinanceId] = newFinance
+  raw.financeDetails[newFinanceId] = []
+  raw.financeId = newFinanceId.toString()
+  let response = Object.keys(raw.finances).map(id => {
+    raw.finances[id].id = id
+    return raw.finances[id]
+  })
+  
+  try {
+    fs.writeFileSync(financeStore, JSON.stringify(raw));
+    return res.json({
+      message: `Log for ${month}, ${year} created`, 
+      finances: response
+    });
+  }
+  catch (ex) {
+    return res.status(500).json({ message: ex })
+  }
+})
+
 let updateFinance = (finance, financeDetails) => {
   let ins = financeDetails.filter(x => x.transactionType === 'in')
   let outs = financeDetails.filter(x => x.transactionType === 'out')
 
   finance.noOfTransactions = financeDetails.length;
-  
+
   finance.totalInAmount = 0;
   ins.forEach(inDetail => finance.totalInAmount += parseInt(inDetail.amount));
-  
+
   finance.totalOutAmount = 0;
   outs.forEach(outDetail => finance.totalOutAmount += parseInt(outDetail.amount));
 

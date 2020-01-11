@@ -14,7 +14,7 @@ export const handleErrorMessages = (err) => {
 
 export const handleSuccessMessages = (response) => {
   let validResponse = response != null && response.data != null && response.data.message != null && response.data.message != "";
-  let successMessage = validResponse ? response.data.message : "Data saved";
-
+  let successMessage = validResponse ? response.data.message : "Saved";
+  
   toast.success(successMessage);
 }

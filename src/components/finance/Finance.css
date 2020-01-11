@@ -22,3 +22,24 @@
 .total td {
 	font-weight: bold;
 }
+
+.new-log-form {
+	background-color: #343a40d6;
+    padding: 0 25px;
+    border-radius: 10px;
+    color: white;
+}
+
+.new-log-form-label {
+	font-weight: bold;
+	font-size: 18px;
+	margin-bottom: 0;
+	margin-top: 10px;
+}
+
+#icon-close {
+	color:white;
+	font-size: 20px;
+	padding-top: 15px;
+	cursor: pointer;
+}

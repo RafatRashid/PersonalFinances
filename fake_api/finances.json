@@ -5,29 +5,33 @@
             "year": "2019",
             "noOfTransactions": "2",
             "totalInAmount": "500",
-            "totalOutAmount": "173"
+            "totalOutAmount": "173",
+            "id": "1"
         },
         "2": {
             "month": "november",
             "year": "2019",
             "noOfTransactions": "1",
             "totalInAmount": "22500",
-            "totalOutAmount": "0"
+            "totalOutAmount": "0",
+            "id": "2"
         },
         "3": {
             "month": "december",
             "year": "2019",
-            "noOfTransactions": "3",
-            "totalInAmount": "1200",
-            "totalOutAmount": "500"
+            "noOfTransactions": 6,
+            "totalInAmount": 2400,
+            "totalOutAmount": 3200,
+            "id": "3"
         },
         "4": {
             "month": "january",
             "year": "2020",
-            "noOfTransactions": 4,
-            "totalOutAmount": 1400,
+            "noOfTransactions": 5,
+            "totalOutAmount": 3500,
             "totalInAmount": 5000,
-            "toutalOutAmount": 0
+            "toutalOutAmount": 0,
+            "id": "4"
         }
     },
     "financeDetails": {
@@ -122,7 +126,7 @@
             },
             {
                 "detailId": "6",
-                "description": "fin3 det 3",
+                "description": "fin3 det 3.5",
                 "date": "2019-11-26T06:51:20.000Z",
                 "amount": "400",
                 "transactionType": "in"
@@ -131,7 +135,7 @@
                 "detailId": "7",
                 "description": "from pman",
                 "date": "2020-01-04T00:00:00Z",
-                "amount": "12000",
+                "amount": "1200",
                 "transactionType": "in"
             },
             {
@@ -142,7 +146,7 @@
                 "detailId": "9"
             },
             {
-                "description": "From react again yo sheah",
+                "description": "From react again yo shea",
                 "amount": "200",
                 "transactionType": "out",
                 "date": "2020-01-03T18:00:00.000Z",
@@ -177,9 +181,16 @@
                 "transactionType": "out",
                 "date": "2020-01-08T18:00:00.000Z",
                 "detailId": "20"
+            },
+            {
+                "description": "gym fees for me and sami",
+                "amount": "2100",
+                "transactionType": "out",
+                "date": "2020-01-10T18:00:00.000Z",
+                "detailId": "21"
             }
         ]
     },
-    "financeId": "5",
-    "financeDetailId": "20"
+    "financeId": "4",
+    "financeDetailId": "24"
 }

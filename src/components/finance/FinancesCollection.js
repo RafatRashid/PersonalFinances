@@ -2,11 +2,22 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import * as FinanceAc from '../../stores/action-creators/Finance'
-import {getFinances, getSelectedFinanceId} from '../../stores/reducers/Finance'
+import { getFinances, getSelectedFinanceId } from '../../stores/reducers/Finance'
 import './Finance.css'
 import FinanceCard from './FinanceCard'
+import NewFinanceLog from './NewFinanceLog'
+import {months} from '../../helpers/Utilities';
 
+const defaultLogFormModel = {
+  month: months[new Date().getMonth()],
+  year: new Date().getFullYear()
+}
 class FinancesCollection extends React.Component {
+  state = {
+    showNewLogForm: false,
+    newLogFormModel: { ...defaultLogFormModel }
+  }
+
   componentDidMount() {
     this.props.fetchAllFinances();
   }
@@ -23,7 +34,15 @@ class FinancesCollection extends React.Component {
 
     return (
       <div>
-        <h3>Finances</h3>
+        <h3>Monthly Finance Logs</h3>
+
+        <NewFinanceLog
+          visible={this.state.showNewLogForm}
+          closeForm={this.closeFinanceForm}
+          changeHandler={this.handleNewFinanceLogData}
+          onSave={this.saveNewFinanceLog}
+          newFinance={this.state.newLogFormModel}
+        />
 
         <div className="finance-collection">
           {finances}
@@ -36,12 +55,37 @@ class FinancesCollection extends React.Component {
   openFinanceDetail = financeId => {
     return this.props.history.push({
       pathname: '/finance/info',
-      state: {financeId}
+      state: { financeId }
     })
   }
 
   createNewFinance = () => {
-    console.log('creating new boooyah');
+    this.setState({
+      showNewLogForm: true
+    })
+  }
+
+  closeFinanceForm = () => {
+    this.setState({ showNewLogForm: false })
+  }
+
+  handleNewFinanceLogData = (ev) => {
+    let name = ev.target.name
+    let value = ev.target.value
+
+    let formData = { ...this.state.newLogFormModel }
+    formData[name] = value
+
+    console.log(formData)
+    this.setState({
+      newLogFormModel: formData
+    })
+  }
+
+  saveNewFinanceLog = (ev) => {
+    ev.preventDefault()
+    this.props.saveNewFinanceLog(this.state.newLogFormModel)
+    this.setState({ showNewLogForm: false, newLogFormModel: { ...defaultLogFormModel } })
   }
 }
 
@@ -53,7 +97,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAllFinances: () => dispatch(FinanceAc.fetchAllFinances())
+    fetchAllFinances: () => dispatch(FinanceAc.fetchAllFinances()),
+    saveNewFinanceLog: newFinanceLog => dispatch(FinanceAc.saveNewFinance(newFinanceLog))
   }
 }
 
